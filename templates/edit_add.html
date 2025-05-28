@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if dog %}Edit Dog{% else %}Add Dog{% endif %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5" style="max-width: 500px;">
+        <h2 class="mb-4 text-center">{% if dog %}Edit Dog{% else %}Add Dog{% endif %}</h2>
+
+        <form method="POST" action="{% if dog %}{{ url_for('edit', id=dog[0]) }}{% else %}{{ url_for('add') }}{% endif %}" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="breed" class="form-label">Dog Breed</label>
+                <input type="text" class="form-control" id="breed" name="breed" value="{% if dog %}{{ dog[1] }}{% endif %}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="owner" class="form-label">Owner</label>
+                <input type="text" class="form-control" id="owner" name="owner" value="{% if dog %}{{ dog[2] }}{% endif %}">
+            </div>
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Dog Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{% if dog %}{{ dog[3] }}{% endif %}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="color" class="form-label">Color</label>
+                <input type="text" class="form-control" id="color" name="color" value="{% if dog %}{{ dog[4] }}{% endif %}" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">{% if dog %}Update{% else %}Add{% endif %}</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
